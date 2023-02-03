@@ -24,6 +24,7 @@ def check_stats():
 def shop():
     if (game['tool'] >= len(tools) - 1):
         print("No more upgrades available")
+        return 0
     next_tool = tools[game['tool']+1]
     if (next_tool is None):
         print("There is no more tools")
@@ -41,8 +42,21 @@ def win_check():
         return True
     return False
 
+def restart():
+    game['money'] = 0
+    game['tool'] = 0
+    
+    
+
 while(True):
-    user_choice = input("[1] Mow Lawn [2] Check Stats [3] Purchase [4] Quit")
+    user_choice = input("""
+                        ----Landscaper----
+                        [1] Mow Lawn 
+                        [2] Check Stats 
+                        [3] Purchase
+                        [4] Restart
+                        [5] Quit
+                        """)
     
     if (user_choice == "1"):
         cut_lawn()
@@ -51,9 +65,12 @@ while(True):
         check_stats()
         
     if (user_choice == "3"):
-        shop() 
+        shop()
+        
+    if (user_choice == "4"): 
+        restart()    
     
-    elif (user_choice == "4"):
+    elif (user_choice == "5"):
         print("You quit the game")
         break
 
